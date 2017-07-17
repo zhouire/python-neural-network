@@ -37,7 +37,7 @@ nn = NeuralNetwork.init(
 ```
 
 This will initialize the neural network with some _random_ initial parameters (theta values).
-However, if you are not really satisfied with default initialization of parameters with radom
+However, if you are not really satisfied with default initialization of parameters with random
 values, feel free to use another variant of the neural network initializer.
 
 ```python
@@ -58,7 +58,7 @@ nn = NeuralNetwork.init_with_theta(
 ```
 
 _Note: You don't need to tell any size for this variant as I went to primary and learnt
-enough arithmatic to figure out the sizes myself._
+enough arithmetic to figure out the sizes myself._
 
 
 ### How to train your neural network
@@ -131,8 +131,8 @@ prediction = model.predict_multiclass_classification(X_in)
 I this case, the returned value in `prediction` is a matrix of size (`m` x `1`). Where,
 
 - `m` is the number of input data rows.
-- Each output will have an integer value betwen `0` (inclusive) and `k-1` (inclusive), where
-`k` is the number of classes the output has (or, the size of output layer) and is defintely > `2`.
+- Each output will have an integer value between `0` (inclusive) and `k-1` (inclusive), where
+`k` is the number of classes the output has (or, the size of output layer) and is definitely > `2`.
 - The value in the output (between `0` and `k-1`) will indicate the predicted class of
 the corresponding input data row.
 
@@ -151,7 +151,7 @@ hypothesis = model.evaluate(X_in)
 
 The returned value in `hypothesis` is a matrix of size (`m` x `k`), where `m` and `k` holds
 the same meaning as before. In this case, the values in this matrix are real numbers between
-`0` and `1`. One way to interpret these values woule be:
+`0` and `1`. One way to interpret these values would be:
 > The value in the `i`th row's `j`th cell of the returned matrix
 is the probability of `i`th input data row's being in output class `j`.
 
