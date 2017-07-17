@@ -1,6 +1,6 @@
 # python-neural-network [![Build Status](https://travis-ci.org/zpbappi/python-neural-network.svg?branch=master)](https://travis-ci.org/zpbappi/python-neural-network)
-A neural network implementation using python. 
-It supports variable size and number of hidden layers, 
+A neural network implementation using python.
+It supports variable size and number of hidden layers,
 uses numpy and scipy to implement feed-forward and back-propagation effeciently.
 
 ## Features
@@ -12,7 +12,7 @@ uses numpy and scipy to implement feed-forward and back-propagation effeciently.
 - [x] Separate utility to draw learning curves using the existing neural network.
 - [ ] Choice of high performance calculation (read- faster training) using Numba.
 - [ ] Choice of GPU acceleration for even higher performance using CUDA (depending on hardware support).
-- [ ] Separate utility to automatically select optimal value of the regularization 
+- [ ] Separate utility to automatically select optimal value of the regularization
 parameter (lambda).
 - [ ] Ability to register a callback method to facilitate gradient checking.
 
@@ -20,7 +20,7 @@ parameter (lambda).
 
 - When you _train_ a _NeuralNetwork_, you get a _Model_.
 - You use the _Model_ to _predict_ classification or _evaluate_ the hypothesis on input.
-- Knowledge is nothing but some floating point numbers. 
+- Knowledge is nothing but some floating point numbers.
 So, you can create a _Model_ using your own _knowledge values_ without training
 any _NeuralNetwork_.
 
@@ -57,7 +57,7 @@ nn = NeuralNetwork.init_with_theta(
 )
 ```
 
-_Note: You don't need to tell any size for this variant as I went to primary and learnt 
+_Note: You don't need to tell any size for this variant as I went to primary and learnt
 enough arithmatic to figure out the sizes myself._
 
 
@@ -76,22 +76,22 @@ Here, `X_train` is a matrix (or, multi-dimensional array if you prefer) of size 
 - `n` is the number of features in each data (i.e. number of columns)
 - `X` is expected to be normalized, if needed.
 - You do ___NOT___ need to pad `1` in the first column. Neural network will that as a part
-of training. But, it will keep your original data unchanged. 
+of training. But, it will keep your original data unchanged.
 
 And, `Y_train` is a matrix (or, multi-dimensional array) of size (`m` x `k`), where
 
 - `m` is the number of training data you have
-- `k` is the number of the output class you have (also, is the number of columns in output data). 
-For any particular output data of `k` class (where `k` > 2), only one of the columns 
-(column `0` to `k-1`) should have the value `1`, while other columns of the same row 
-should have the value `0`. 
+- `k` is the number of the output class you have (also, is the number of columns in output data).
+For any particular output data of `k` class (where `k` > 2), only one of the columns
+(column `0` to `k-1`) should have the value `1`, while other columns of the same row
+should have the value `0`.
 - for binary classification, `k=1`. This single output will denote two classes with the values `0` and `1`.
 
 ### Predicting
 
 Once you have the model, you can make prediction using that.
 
-For __binary classification__, you are expected to have an output layer size one. That is, 
+For __binary classification__, you are expected to have an output layer size one. That is,
 a single column in your output data when you were training the model. When you use the trained
 model to predict, you will have similar single column output with values either `0` or `1`
 for each input data. This is how you use the model for binary classification:
@@ -131,16 +131,16 @@ prediction = model.predict_multiclass_classification(X_in)
 I this case, the returned value in `prediction` is a matrix of size (`m` x `1`). Where,
 
 - `m` is the number of input data rows.
-- Each output will have an integer value betwen `0` (inclusive) and `k-1` (inclusive), where 
+- Each output will have an integer value betwen `0` (inclusive) and `k-1` (inclusive), where
 `k` is the number of classes the output has (or, the size of output layer) and is defintely > `2`.
-- The value in the output (between `0` and `k-1`) will indicate the predicted class of 
+- The value in the output (between `0` and `k-1`) will indicate the predicted class of
 the corresponding input data row.
 
 
 ### Raw hypothesis evaluation
 
-In case you do not like the sugar-coated methods for binary classification and multiclass 
-classification, you can always use the hypothesis evaluation result directly and have your 
+In case you do not like the sugar-coated methods for binary classification and multiclass
+classification, you can always use the hypothesis evaluation result directly and have your
 own complex classification logic. Here is how you use it:
 
 ```python
@@ -162,9 +162,9 @@ The learning curve utility can be initialized as:
 
 ```python
 lc = LearningCurve(
-    0, # lambda 
+    0, # lambda
     [5], # hidden layer sizes
-    np.random.rand(10, 5), # X_train 
+    np.random.rand(10, 5), # X_train
     np.random.rand(10, 1), # Y_train
     np.random.rand(2, 5), # X_cv or cross validation input
     np.random.rand(2, 1) # Y_cv or cross validation output
@@ -181,7 +181,7 @@ for data_point in lc.generate():
 
 However, with massive amount of data, this process will take huge time to complete.
 In that case, you may not want to draw all the points starting from `x=1` up to
-`x = <number of data rows you have>`. You may want to skip some data points 
+`x = <number of data rows you have>`. You may want to skip some data points
 by supplying your _custom indices_. Here is how you do that:
 ```python
 custom_indices = [1, 3, 4, 5, 9, 11, 17, 50, 100]
@@ -191,6 +191,6 @@ custom_indices = [1, 3, 4, 5, 9, 11, 17, 50, 100]
  for data_point in lc.generate(custom_indices):
     x, error_train, error_cv = data_point
     # draw me a nice graph!
-``` 
-_Note: You need to make sure that your custom indices do not go bellow zero and beyond 
-the size of your trainig data, for obvious reasons._
+```
+_Note: You need to make sure that your custom indices do not go bellow zero and beyond
+the size of your training data, for obvious reasons._
